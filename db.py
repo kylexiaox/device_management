@@ -7,8 +7,8 @@ from playhouse.pool import  PooledMySQLDatabase
 
 
 
-#DATABASE = 'mysql://root:2wsx3edc@561731630d2d7.sh.cdb.myqcloud.com:10522/device_info'
-DATABASE = 'mysql://root:123321@localhost:3306/device_info'
+
+DATABASE = 'mysql://abc:passwd@host:3306/db_name'
 database = connect(DATABASE)
 
 
