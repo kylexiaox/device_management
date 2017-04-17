@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>device_info</title>
+</head>
+<body>
+{% if type == 'id' %}
+    {% for item in device_info %}
+        <p>设备ID: {{ item.device_id }}</p>
+        <p>设备名称: {{ item.device_name }}</p>
+        <p>设备型号: {{ item.device_type }}</p>
+            {% for i in item.identifier %}
+                <p>设备imei/识别号: {{ i.imei }}</p>
+            {% endfor %}
+        <p>责任部门: {{ item.user_department }}</p>
+        <p>责任人: {{ item.belonger }}</p>
+        <p>设备批次: {{ item.batch }}</p>
+        <p>备注: {{ item.remarks }}</p>
+    {% endfor %}
+{% elif type == 'imei' %}
+    {% for item in device_info %}
+        <p>设备ID: {{ item.device_id }}</p>
+        <p>设备imei/识别号: {{ item.imei }}</p>
+        <p>设备名称: {{ item.device.device_name }}</p>
+        <p>设备型号: {{ item.device.device_type }}</p>
+        <p>责任部门: {{ item.device.user_department }}</p>
+        <p>责任人: {{ item.device.belonger }}</p>
+        <p>设备批次: {{ item.device.batch }}</p>
+        <p>备注: {{ item.device.remarks }}</p>
+        <p>-------------分割线--------------</p>
+    {% endfor %}
+{% endif %}
+</body>
+</html>
