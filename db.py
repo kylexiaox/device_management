@@ -56,7 +56,7 @@ class Device_Identifier(BaseModel):
 
     @classmethod
     def get_dev_by_imei(cls,imei):
-        data = Device_Identifier.select().where(Device_Identifier.imei == imei)
+        data = Device_Identifier.select().where(Device_Identifier.imei.contains(imei))
         return data
 
     class Meta:

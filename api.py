@@ -21,10 +21,14 @@ def _db_close(exc):
 def intro():
     return render_template('intro.html')
 
+@app.route('/d')
 @app.route('/d/<id>',methods=['GET'])
 def get_dev_info(id):
-    data = Device_Info.get_dev_by_id(id)
-    return render_template('device_info.html',device_info = data,type = 'id')
+    if id == None:
+        return render_template('device_info.html')
+    else:
+        data = Device_Info.get_dev_by_id(id)
+        return render_template('device_info.html',device_info = data,type = 'id')
 
 @app.route('/imei/<imei>',methods=['GET'])
 def get_dev_info_by_imei(imei):
