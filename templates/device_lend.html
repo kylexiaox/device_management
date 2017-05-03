@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>借测试设备</title>
+</head>
+<body>
+<p>编号:{{ device.device_id }}</p>
+<p>设备名称:{{ device.device_name }}</p>
+    <form action="/d/{{ device.device_id }}/lend" method="POST">
+        姓名: <input type="text" name = 'user_name'><br>
+        部门: <input type="text" name = 'user_department'><br>
+        所在楼宇: <input type="text" name = 'user_building'><br>
+        所在楼层: <input type="text" name = 'user_floor'><br>
+        所在办公室: <input type="text" name = 'user_room'><br>
+        邮箱: <input type="text" name = 'email'><br><br>
+        <input type="submit" value="提交">
+    </form>
+</body>
+</html>

@@ -6,9 +6,9 @@
 </head>
 <body>
 
-<form>
+<!--<form>
     <input>
-</form>
+</form> -->
 
 {% if type == 'id' %}
     {% for item in device_info %}
@@ -22,6 +22,10 @@
         <p>责任人: {{ item.belonger }}</p>
         <p>设备批次: {{ item.batch }}</p>
         <p>备注: {{ item.remarks }}</p>
+            {% if item.status == 'IN' %}
+                <p><a href="http://device.ivy4u.com/d/{{ item.device_id }}/OUT">申请领取</a></p>
+            {% endif %}
+        <p>-------------分割线--------------</p>
     {% endfor %}
 {% elif type == 'imei' %}
     {% for item in device_info %}

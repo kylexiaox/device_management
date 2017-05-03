@@ -1,16 +1,21 @@
-#coding=utf-8
+# coding=utf-8
 
 from peewee import *
-from flask import Flask
 from playhouse.db_url import connect
-from playhouse.pool import  PooledMySQLDatabase
+from datetime import datetime
+from playhouse.pool import PooledMySQLDatabase
 
-
-
-
-DATABASE = 'mysql://abc:passwd@host:3306/db_name'
-database = connect(DATABASE)
-
+# DATABASE = 'mysql://abc:passwd@host:3306/db_name'
+database = PooledMySQLDatabase(
+        database='device_info',  # string
+        max_connections=32,
+        stale_timeout=300,
+        passwd='123321',  # string
+        user='root',  # string
+        host='localhost',  # string
+        port=3306,  # int,
+        autocommit=False
+)
 
 
 class BaseModel(Model):
@@ -18,9 +23,8 @@ class BaseModel(Model):
         database = database
 
 
-
 class Device_Info(BaseModel):
-    device_id = IntegerField(unique=True,primary_key=True)
+    device_id = IntegerField(unique=True, primary_key=True)
     project = CharField()
     category = CharField()
     device_name = CharField()
@@ -37,9 +41,18 @@ class Device_Info(BaseModel):
     provider = CharField()
 
     @classmethod
-    def get_dev_by_id(cls,id):
+    def get_dev_by_id(cls, id):
         data = Device_Info.select().where(Device_Info.device_id == id)
         return data
+
+    @classmethod
+    def get_devs_by_name(cls, name=None, status=None):
+        basic_query = Device_Info.select()
+        if name != None:
+            basic_query = basic_query.where((Device_Info.device_name.contains(name)) | (Device_Info.category.contains(name)))
+        if status != None:
+            basic_query = basic_query.filter(Device_Info.status == status)
+        return basic_query
 
     class Meta:
         db_table = 'DEVICE_INFO'
@@ -49,13 +62,12 @@ class Device_Info(BaseModel):
         )
 
 
-
 class Device_Identifier(BaseModel):
-    device = ForeignKeyField(Device_Info,related_name='identifier')
+    device = ForeignKeyField(Device_Info, related_name='identifier')
     imei = CharField()
 
     @classmethod
-    def get_dev_by_imei(cls,imei):
+    def get_dev_by_imei(cls, imei):
         data = Device_Identifier.select().where(Device_Identifier.imei.contains(imei))
         return data
 
@@ -66,9 +78,10 @@ class Device_Identifier(BaseModel):
         )
         primary_key = CompositeKey('device_id', 'imei')
 
+
 class Lend_Record(BaseModel):
-    lend_id = IntegerField(unique=True,primary_key=True)
-    device_id = IntegerField()
+    lend_id = IntegerField(unique=True, primary_key=True)
+    device = ForeignKeyField(Device_Info,related_name='rent_device')
     out_time = DateTimeField()
     user_name = CharField()
     user_department = CharField()
@@ -78,10 +91,32 @@ class Lend_Record(BaseModel):
     status = CharField()
     return_time = DateTimeField()
 
+    @classmethod
+    @database.atomic()
+    def lend_pending(cls, device_id, user_name, user_department, user_building, user_floor, user_room):
+        database.begin()
+        try:
+            Lend_Record.insert(device=device_id, out_time=datetime.now(), user_name=user_name,
+                                  user_department=user_department, user_building=user_building, user_floor=user_floor,
+                                  user_room=user_room,status = 'lend_pending').execute()
+            Device_Info.update(dev_status ='lend-pending').where(Device_Info.device_id == device_id).execute()
+        except StandardError, e:
+            print e
+            database.rollback()
+            raise
+        else:
+            try:
+                database.commit()
+            except:
+                database.rollback()
+                raise
+
+
+
+
     class Meta:
         db_table = 'LEND_RECORD'
         order_by = ('out_time',)
         indexes = (
             (('lend_id'), True),
         )
-
