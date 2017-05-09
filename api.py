@@ -3,18 +3,20 @@
 from flask import Flask,request
 from flask import render_template
 from db import *
+#from playhouse.flask_utils import FlaskDB
+from db import database
 
 app = Flask(__name__)
+#FlaskDB(app,database)
 
+@app.before_request
+def _db_connect():
+    database.connect()
 
-# @app.before_request
-# def _db_connect():
-#     database.connect()
-#
-# @app.teardown_request
-# def _db_close(exc):
-#     if not database.is_closed():
-#         database.close()
+@app.teardown_request
+def _db_close(exc):
+    if not database.is_closed():
+        database.close()
 
 @app.route('/')
 @app.route('/intro')

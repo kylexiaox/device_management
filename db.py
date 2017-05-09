@@ -9,7 +9,6 @@ from playhouse.pool import PooledMySQLDatabase
 database = PooledMySQLDatabase(
         database='device_info',  # string
         max_connections=32,
-        stale_timeout=300,
         passwd='123321',  # string
         user='root',  # string
         host='localhost',  # string
@@ -43,6 +42,7 @@ class Device_Info(BaseModel):
     @classmethod
     def get_dev_by_id(cls, id):
         data = Device_Info.select().where(Device_Info.device_id == id)
+        print "get ID "+str(id)
         return data
 
     @classmethod
