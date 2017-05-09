@@ -99,7 +99,7 @@ class Lend_Record(BaseModel):
             Lend_Record.insert(device=device_id, out_time=datetime.now(), user_name=user_name,
                                   user_department=user_department, user_building=user_building, user_floor=user_floor,
                                   user_room=user_room,status = 'lend_pending').execute()
-            Device_Info.update(dev_status ='lend-pending').where(Device_Info.device_id == device_id).execute()
+            Device_Info.update(status ='lend-pending').where(Device_Info.device_id == device_id).execute()
         except StandardError, e:
             print e
             database.rollback()

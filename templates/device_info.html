@@ -23,7 +23,7 @@
         <p>设备批次: {{ item.batch }}</p>
         <p>备注: {{ item.remarks }}</p>
             {% if item.status == 'IN' %}
-                <p><a href="http://device.ivy4u.com/d/{{ item.device_id }}/OUT">申请领取</a></p>
+                <p><a href="http://device.ivy4u.com/d/{{ item.device_id }}/lend">申请领取</a></p>
             {% endif %}
         <p>-------------分割线--------------</p>
     {% endfor %}
