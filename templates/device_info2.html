@@ -56,6 +56,17 @@
     <script type="text/javascript" src="../js/charts/chart2.js"></script>
     <script type="text/javascript" src="../js/charts/chart3.js"></script>
 
+
+    <script type="text/javascript">
+        var btn = document.getElementById("sbtn");
+        var search = document.getElementById("search");
+        btn.onclick=function(){
+            url = "http://device.ivy4u.com/s/"+search+"?status=IN";
+            self.location(url);
+        };
+
+    </script>
+
 </head>
 
 <body>
@@ -98,8 +109,8 @@
                         <li><a href="#" title="Advanced search" class="advanced-option tip"></a></li>
                         <li><a href="#" title="Settings" class="settings-option tip"></a></li>
                     </ul>
-                    <input type="text" placeholder="搜索可用设备" id="autocomplete"/>
-                    <input type="submit" class="btn btn-info" value="Search"/>
+                    <input type="text" placeholder="搜索可用设备" id="search"/>
+                    <input type="submit" class="btn btn-info" value="Search" id ="sbtn"/>
                 </div>
             </form>
             <!-- /search widget -->
@@ -140,7 +151,7 @@
                                         {% if item.status == 'IN' %}
                                             <p class="item-buttons">
                                                 <a href="http://device.ivy4u.com/d/{{ item.device_id }}/lend"
-                                                   class="btn btn-info tip" title="Edit"><i class="icon-pencil"></i></a>
+                                                   class="btn btn-info tip" title="申请"><i class="icon-pencil"></i></a>
                                             </p>
                                         {% endif %}
                                     </div>
@@ -150,6 +161,34 @@
                     {% endfor %}
                 {% elif type == 'imei' %}
                     {% for item in device_info %}
+                        <div class="span3">
+                            <div class="widget">
+                                <div class="well">
+                                    <!--<div class="view">
+                                          <a href="img/demo/big.jpg" class="view-back lightbox"></a>
+                                          <img src="http://placehold.it/580x380" alt="" />
+                                      </div>-->
+                                    <div class="item-info">
+                                        <a href="#" title="" class="item-title"> {{ item.device_name }}</a>
+                                        <p>设备ID: {{ item.device_id }}</p>
+                                        <p>设备名称: {{ item.device_name }}</p>
+                                        <p>设备型号: {{ item.device_type }}</p>
+                                        {% for i in item.identifier %}
+                                            <p>设备imei/识别号: {{ i.imei }}</p>
+                                        {% endfor %}
+                                        <p>责任部门: {{ item.user_department }}</p>
+                                        <p>责任人: {{ item.belonger }}</p>
+                                        <p>设备批次: {{ item.batch }}</p>
+                                        <p>备注: {{ item.remarks }}</p>
+                                        {% if item.status == 'IN' %}
+                                            <p class="item-buttons">
+                                                <a href="http://device.ivy4u.com/d/{{ item.device_id }}/lend"
+                                                   class="btn btn-info tip" title="申请"><i class="icon-pencil"></i></a>
+                                            </p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
                     {% endfor %}
                 {% endif %}
 
