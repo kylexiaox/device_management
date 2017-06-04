@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f4c1c6ee-26ac-400c-9197-c610eb482164" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/device_info2.html" afterPath="$PROJECT_DIR$/templates/device_info2.html" />
     </list>
     <ignored path="testDevice.iws" />
@@ -84,8 +83,8 @@
       <file leaf-file-name="device_info2.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/device_info2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6727273">
-              <caret line="181" column="42" selection-start-line="181" selection-start-column="42" selection-end-line="181" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.7">
+              <caret line="205" column="63" selection-start-line="205" selection-start-column="63" selection-end-line="205" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -958,8 +957,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/device_info2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6727273">
-          <caret line="181" column="42" selection-start-line="181" selection-start-column="42" selection-end-line="181" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.7">
+          <caret line="205" column="63" selection-start-line="205" selection-start-column="63" selection-end-line="205" selection-end-column="63" />
           <folding />
         </state>
       </provider>
