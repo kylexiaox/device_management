@@ -93,8 +93,8 @@
       <file leaf-file-name="device_info2.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/device_info2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6727273">
-              <caret line="212" column="5" selection-start-line="212" selection-start-column="5" selection-end-line="212" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.7">
+              <caret line="213" column="37" selection-start-line="213" selection-start-column="37" selection-end-line="213" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -954,8 +954,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/device_info2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6727273">
-          <caret line="212" column="5" selection-start-line="212" selection-start-column="5" selection-end-line="212" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.7">
+          <caret line="213" column="37" selection-start-line="213" selection-start-column="37" selection-end-line="213" selection-end-column="37" />
           <folding />
         </state>
       </provider>
