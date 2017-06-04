@@ -31,7 +31,7 @@ def intro():
 
 @app.route('/d')
 @app.route('/d/<int:id>',methods=['GET'])
-def get_dev_info(id):
+def get_dev_info(id=0):
     """
     获取设备ID对应的设备信息
     :param id:
@@ -47,12 +47,14 @@ def get_dev_info(id):
 
 @app.route('/s')
 @app.route('/s/<q>',methods=['GET'])
-def search(q):
+def search(q=None):
     """
     搜索imei或者ID,获得信息
     :param q:
     :return:
     """
+    if q == None:
+        return render_template(dev_page)
     status = request.args.get('status')
     data = Device_Info.get_devs_by_name(name=q,status=status)
     return render_template(dev_page,device_info = data, type = 'id')
