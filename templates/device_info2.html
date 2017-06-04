@@ -57,15 +57,6 @@
     <script type="text/javascript" src="../js/charts/chart3.js"></script>
 
 
-    <script type="text/javascript">
-        var btn = document.getElementById("sbtn");
-        var search = document.getElementById("search");
-        btn.onclick=function(){
-            url = "http://device.ivy4u.com/s/"+search+"?status=IN";
-            self.location(url);
-        };
-
-    </script>
 
 </head>
 
@@ -201,22 +192,19 @@
 
     </div>
     <!-- /content -->
-
+</div>
 </div>
 <!-- /content container -->
 
 
-<!-- Footer -->
-<div id="footer">
-    <div class="copyrights">Copyright &copy; 2014.Company name All rights reserved.<a target="_blank"
-                                                                                      href="http://sc.chinaz.com/moban/">
-        &#x7F51;&#x9875;&#x6A21;&#x677F;</a></div>
-    <ul class="footer-links">
-        <li><a href="" title=""><i class="icon-cogs"></i>Contact admin</a></li>
-        <li><a href="" title=""><i class="icon-screenshot"></i>Report bug</a></li>
-    </ul>
-</div>
-<!-- /footer -->
+<script type="text/javascript">
+    var btn = document.getElementById("sbtn");
+    var search = document.getElementById("search");
+    btn.onclick=function(){
+        url = "http://device.ivy4u.com/s/"+search+"?status=IN";
+        self.location(url);
+    };
+</script>
 
 </body>
 </html>
