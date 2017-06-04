@@ -9,14 +9,16 @@ from db import database
 app = Flask(__name__)
 #FlaskDB(app,database)
 
-@app.before_request
-def _db_connect():
-    database.connect()
+# @app.before_request
+# def _db_connect():
+#     database.connect()
+#
+# @app.teardown_request
+# def _db_close(exc):
+#     if not database.is_closed():
+#         database.close()
 
-@app.teardown_request
-def _db_close(exc):
-    if not database.is_closed():
-        database.close()
+dev_page = 'device_info2.html'
 
 @app.route('/')
 @app.route('/intro')
@@ -40,7 +42,7 @@ def get_dev_info(id):
         data = Device_Info.get_dev_by_id(id)
     except StandardError, e:
         print e
-    return render_template('device_info.html',device_info = data,type = 'id')
+    return render_template(dev_page,device_info = data,type = 'id')
 
 
 @app.route('/s')
@@ -53,11 +55,11 @@ def search(q):
     """
     status = request.args.get('status')
     data = Device_Info.get_devs_by_name(name=q,status=status)
-    return render_template('device_info.html',device_info = data, type = 'id')
+    return render_template(dev_page,device_info = data, type = 'id')
 
 @app.route('/imei/<imei>',methods=['GET'])
 def get_dev_info_by_imei(imei):
-    return render_template('device_info.html',device_info = Device_Identifier.get_dev_by_imei(imei),type = 'imei')
+    return render_template(dev_page,device_info = Device_Identifier.get_dev_by_imei(imei),type = 'imei')
 
 @app.route('/d/<int:id>/lend',methods=['GET'])
 def get_lend_page(id):
