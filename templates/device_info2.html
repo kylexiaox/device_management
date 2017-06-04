@@ -202,7 +202,8 @@
     var search = document.getElementById("search");
     btn.onclick=function(){
         url = "http://device.ivy4u.com/s/"+search+"?status=IN";
-        self.location(url);
+        alert(url);
+        window.location.href=url;
     };
 </script>
 
