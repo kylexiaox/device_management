@@ -9,9 +9,9 @@ from playhouse.pool import PooledMySQLDatabase
 database = PooledMySQLDatabase(
         database='device_info',  # string
         max_connections=32,
-        passwd='123321',  # string
+        passwd='2wsx3edc',  # string
         user='root',  # string
-        host='localhost',  # string
+        host='10.66.148.94',  # string
         port=3306,  # int,
         autocommit=False
 )
