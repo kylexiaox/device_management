@@ -49,7 +49,7 @@ class Device_Info(BaseModel):
     def get_devs_by_name(cls, name=None, status=None):
         basic_query = Device_Info.select()
         if name != None:
-            basic_query = basic_query.where((Device_Info.device_name.contains(name)) | (Device_Info.category.contains(name)))
+            basic_query = basic_query.where((Device_Info.device_name.contains(name)) | (Device_Info.device_type.contains(name)))
         if status != None:
             basic_query = basic_query.filter(Device_Info.status == status)
         return basic_query
