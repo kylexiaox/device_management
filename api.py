@@ -30,6 +30,7 @@ def intro():
     return render_template('intro.html')
 
 @app.route('/d')
+@app.route('/d/')
 @app.route('/d/<int:id>',methods=['GET'])
 def get_dev_info(id=0):
     """
@@ -46,6 +47,7 @@ def get_dev_info(id=0):
 
 
 @app.route('/s')
+@app.route('/s/')
 @app.route('/s/<q>',methods=['GET'])
 def search(q=None):
     """
