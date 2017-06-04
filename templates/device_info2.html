@@ -206,6 +206,12 @@
         url = "http://device.ivy4u.com/s/"+search+"?status=IN";
         window.location.href=url;
     };
+
+    $("#search").keyup(function(event){
+    if(event.keyCode == 13){
+        $("#sbtn").click();
+    }
+});
 </script>
 
 </body>
