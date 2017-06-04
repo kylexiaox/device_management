@@ -199,8 +199,8 @@
 
 <script type="text/javascript">
     var btn = document.getElementById("sbtn");
-    var search = document.getElementById("search").value;
     btn.onclick=function(){
+        var search = document.getElementById("search").value;
         url = "http://device.ivy4u.com/s/"+search+"?status=IN";
         alert(url);
         window.location.href=url;
