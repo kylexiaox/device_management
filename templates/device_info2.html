@@ -199,9 +199,9 @@
 
 <script type="text/javascript">
     var btn = document.getElementById("sbtn");
-    var search = document.getElementById("search");
+    var search = document.getElementById("search").value;
     btn.onclick=function(){
-        url = "http://device.ivy4u.com/s/"+search.value+"?status=IN";
+        url = "http://device.ivy4u.com/s/"+search+"?status=IN";
         alert(url);
         window.location.href=url;
     };
