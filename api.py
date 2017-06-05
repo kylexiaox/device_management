@@ -91,6 +91,7 @@ def rent_dev(id):
         return render_template('result.html',result = u'出错了!')
         print e
 
+@app.route('/d/<int:id>/reset',method=['GET'])
 
 @app.route('/mail',methods=['GET'])
 def send_mail():
