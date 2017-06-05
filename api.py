@@ -1,12 +1,14 @@
 #coding=utf-8
-
 from flask import Flask,request
 from flask import render_template
 from db import *
-#from playhouse.flask_utils import FlaskDB
-from db import database
+import tools
+from flask.ext.mail import Mail
 
 app = Flask(__name__)
+app.config.from_object('config')
+mail = Mail(app)
+
 #FlaskDB(app,database)
 
 # @app.before_request
@@ -19,6 +21,7 @@ app = Flask(__name__)
 #         database.close()
 
 dev_page = 'device_info2.html'
+
 
 @app.route('/')
 @app.route('/intro')
@@ -81,10 +84,18 @@ def rent_dev(id):
                                        user_department=request.form['user_department'],
                                        user_building=request.form['user_building'],
                                        user_floor=request.form['user_floor'],user_room=request.form['user_room'])
-        return render_template('result.html',result = u'预订成功,请填写申请表并签字,提交给管理员.')
+        recipients = request.form['email']
+        tools.send_email([recipients])
+        return render_template('result.html',result = u'预订成功,请查收邮件填写申请表并签字,提交给管理员.')
     except StandardError, e:
         return render_template('result.html',result = u'出错了!')
         print e
+
+
+@app.route('/mail',methods=['GET'])
+def send_mail():
+    tools.send_email()
+    return "ok"
 
 if __name__ == '__main__':
     app.run(port=23333,debug=True)

@@ -1,20 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>借测试设备</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <title>测试设备出借申请</title>
+    <link href="../css/main.css" rel="stylesheet" type="text/css"/>
+    <!--[if IE 8]><link href="css/ie8.css" rel="stylesheet" type="text/css" /><![endif]-->
+
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.9.1/jquery-ui.min.js"></script>
+
+    <script type="text/javascript" src="../js/plugins/charts/excanvas.min.js"></script>
+    <script type="text/javascript" src="../js/plugins/charts/jquery.flot.js"></script>
+    <script type="text/javascript" src="../js/plugins/charts/jquery.flot.resize.js"></script>
+    <script type="text/javascript" src="../js/plugins/charts/jquery.sparkline.min.js"></script>
+
+    <script type="text/javascript" src="../js/plugins/ui/jquery.easytabs.min.js"></script>
+    <script type="text/javascript" src="../js/plugins/ui/jquery.collapsible.min.js"></script>
+    <script type="text/javascript" src="../js/plugins/ui/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="../js/plugins/ui/prettify.js"></script>
+    <script type="text/javascript" src="../js/plugins/ui/jquery.bootbox.min.js"></script>
+    <script type="text/javascript" src="../js/plugins/ui/jquery.colorpicker.js"></script>
+    <script type="text/javascript" src="../js/plugins/ui/jquery.timepicker.min.js"></script>
+    <script type="text/javascript" src="../js/plugins/ui/jquery.jgrowl.js"></script>
+    <script type="text/javascript" src="../js/plugins/ui/jquery.fancybox.js"></script>
+    <script type="text/javascript" src="../js/plugins/ui/jquery.fullcalendar.min.js"></script>
+    <script type="text/javascript" src="../js/plugins/ui/jquery.elfinder.js"></script>
+
+    <script type="text/javascript" src="../js/plugins/uploader/plupload.js"></script>
+    <script type="text/javascript" src="../js/plugins/uploader/plupload.html4.js"></script>
+    <script type="text/javascript" src="../js/plugins/uploader/plupload.html5.js"></script>
+    <script type="text/javascript" src="../js/plugins/uploader/jquery.plupload.queue.js"></script>
+
+    <script type="text/javascript" src="../js/plugins/forms/jquery.uniform.min.js"></script>
+    <script type="text/javascript" src="../js/plugins/forms/jquery.autosize.js"></script>
+    <script type="text/javascript" src="../js/plugins/forms/jquery.inputlimiter.min.js"></script>
+    <script type="text/javascript" src="../js/plugins/forms/jquery.tagsinput.min.js"></script>
+    <script type="text/javascript" src="../js/plugins/forms/jquery.inputmask.js"></script>
+    <script type="text/javascript" src="../js/plugins/forms/jquery.select2.min.js"></script>
+    <script type="text/javascript" src="../js/plugins/forms/jquery.listbox.js"></script>
+    <script type="text/javascript" src="../js/plugins/forms/jquery.validation.js"></script>
+    <script type="text/javascript" src="../js/plugins/forms/jquery.validationEngine-en.js"></script>
+    <script type="text/javascript" src="../js/plugins/forms/jquery.form.wizard.js"></script>
+    <script type="text/javascript" src="../js/plugins/forms/jquery.form.js"></script>
+
+    <script type="text/javascript" src="../js/plugins/tables/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript" src="../js/files/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="../js/files/functions.js"></script>
+
+    <script type="text/javascript" src="../js/charts/graph.js"></script>
+    <script type="text/javascript" src="../js/charts/chart1.js"></script>
+    <script type="text/javascript" src="../js/charts/chart2.js"></script>
+    <script type="text/javascript" src="../js/charts/chart3.js"></script>
+
 </head>
 <body>
 <p>编号:{{ device.device_id }}</p>
 <p>设备名称:{{ device.device_name }}</p>
-    <form action="/d/{{ device.device_id }}/lend" method="POST">
-        姓名: <input type="text" name = 'user_name'><br>
-        部门: <input type="text" name = 'user_department'><br>
-        所在楼宇: <input type="text" name = 'user_building'><br>
-        所在楼层: <input type="text" name = 'user_floor'><br>
-        所在办公室: <input type="text" name = 'user_room'><br>
-        邮箱: <input type="text" name = 'email'><br><br>
-        <input type="submit" value="提交">
+    <form class="form-horizontal" action="/d/{{ device.device_id }}/lend" method="POST">
+        <div class="widget row-fluid">
+            <div class="navbar"><div class="navbar-inner"><h6>设备出借</h6></div></div>
+                <div class="well">
+                    <div class="control-group">
+                        <label class="control-label">姓名:</label>
+                        <div class="controls"><input class="span12" type="text" name="user_name" /></div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">所属部门:</label>
+                        <div class="controls"><input class="span12" type="text" name="user_department" /></div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">所在楼宇:</label>
+                        <div class="controls"><input class="span12" type="text" name="user_building" /></div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">所在楼层:</label>
+                        <div class="controls"><input class="span12" type="text" name="user_floor" /></div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">所在办公室:</label>
+                        <div class="controls"><input class="span12" type="time" name="user_room" /></div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">电子邮箱:</label>
+                        <div class="controls"><input class="span12" type="week" name="week" /></div>
+                    </div>
+
+                    <div class="form-actions">
+                        <input type="submit" class="btn btn-primary">Submit</input>
+                        <button type="button" class="btn btn-danger">Cancel</button>
+                        <button type="reset" class="btn">Reset</button>
+                        <span class="help-inline">Left aligned buttons</span>
+                    </div>
+                </div>
+        </div>
     </form>
 </body>
 </html>
