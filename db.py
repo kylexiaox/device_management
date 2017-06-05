@@ -111,6 +111,24 @@ class Lend_Record(BaseModel):
                 database.rollback()
                 raise
 
+    @classmethod
+    @database.atomic()
+    def return_by_lend_id(cls,device_id):
+        try:
+            Lend_Record.update(status = 'returned',return_time=datetime.now()).execute()
+            Device_Info.update(status='IN',user_name=u'储物柜',return_time=datetime.now()).where(Device_Info.device_id==device_id).excute()
+        except StandardError,e:
+            print e
+            database.rollback()
+            raise
+        else:
+            try:
+                database.commit()
+            except:
+                database.rollback()
+                raise
+
+
 
 
 
