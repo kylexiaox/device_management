@@ -87,11 +87,12 @@ def rent_dev(id):
 @app.route('/lend/<int:id>/reset',methods=['GET'])
 def reset_dev(id):
     try:
-        Lend_Record.return_by_lend_id(id)
+        Lend_Record.reset_by_lend_id(id,'returned')
         return render_template('result.html',result = u"成功!")
     except StandardError, e:
-        return render_template('result.html',result= u"出错了!")
         print e
+        return render_template('result.html',result= u"出错了!")
+
 
 
 

@@ -3,7 +3,6 @@ from playhouse.pool import PooledMySQLDatabase
 from peewee import *
 from playhouse.db_url import connect
 from datetime import datetime
-from api import app
 
 # DATABASE = 'mysql://abc:passwd@host:3306/db_name'
 database = PooledMySQLDatabase(
@@ -17,14 +16,14 @@ database = PooledMySQLDatabase(
 )
 
 
-@app.before_request
-def _db_connect():
-    database.connect()
-
-@app.teardown_request
-def _db_close(exc):
-    if not database.is_closed():
-        database.close()
+# @app.before_request
+# def _db_connect():
+#     database.connect()
+#
+# @app.teardown_request
+# def _db_close(exc):
+#     if not database.is_closed():
+#         database.close()
 
 class BaseModel(Model):
     class Meta:
@@ -122,10 +121,10 @@ class Lend_Record(BaseModel):
 
     @classmethod
     @database.atomic()
-    def return_by_lend_id(cls,device_id):
+    def reset_by_lend_id(cls,device_id,status):
         try:
-            Lend_Record.update(status = 'returned',return_time=datetime.now()).execute()
-            Device_Info.update(status='IN',user_name=u'储物柜',return_time=datetime.now()).where(Device_Info.device_id==device_id).excute()
+            Lend_Record.update(status = status,return_time=datetime.now()).execute()
+            Device_Info.update(status='IN', belonger=u'储物柜').where(Device_Info.device_id==device_id).execute()
         except StandardError,e:
             print e
             database.rollback()
@@ -136,10 +135,6 @@ class Lend_Record(BaseModel):
             except:
                 database.rollback()
                 raise
-
-
-
-
 
     class Meta:
         db_table = 'LEND_RECORD'
