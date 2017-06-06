@@ -11,14 +11,7 @@ mail = Mail(app)
 
 #FlaskDB(app,database)
 
-# @app.before_request
-# def _db_connect():
-#     database.connect()
-#
-# @app.teardown_request
-# def _db_close(exc):
-#     if not database.is_closed():
-#         database.close()
+
 
 dev_page = 'device_info2.html'
 

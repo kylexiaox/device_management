@@ -4,9 +4,18 @@ from peewee import *
 from playhouse.db_url import connect
 from datetime import datetime
 from config import database
+from api import app
 
 # DATABASE = 'mysql://abc:passwd@host:3306/db_name'
 
+@app.before_request
+def _db_connect():
+    database.connect()
+
+@app.teardown_request
+def _db_close(exc):
+    if not database.is_closed():
+        database.close()
 
 class BaseModel(Model):
     class Meta:
