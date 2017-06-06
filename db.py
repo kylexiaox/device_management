@@ -1,12 +1,21 @@
 # coding=utf-8
-
+from playhouse.pool import PooledMySQLDatabase
 from peewee import *
 from playhouse.db_url import connect
 from datetime import datetime
-from config import database
 from api import app
 
 # DATABASE = 'mysql://abc:passwd@host:3306/db_name'
+database = PooledMySQLDatabase(
+        database='device_info',  # string
+        max_connections=32,
+        passwd='123321',  # string
+        user='root',  # string
+        host='localhost',  # string
+        port=3306,  # int,
+        autocommit=False
+)
+
 
 @app.before_request
 def _db_connect():
