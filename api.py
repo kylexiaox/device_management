@@ -110,4 +110,4 @@ def send_mail():
     return "ok"
 
 if __name__ == '__main__':
-    app.run(port=23333,debug=True)
+    app.run(port=23333,debug=True,threaded=True)
