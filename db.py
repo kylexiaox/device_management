@@ -15,16 +15,6 @@ database = PooledMySQLDatabase(
         autocommit=False
 )
 
-
-# @app.before_request
-# def _db_connect():
-#     database.connect()
-#
-# @app.teardown_request
-# def _db_close(exc):
-#     if not database.is_closed():
-#         database.close()
-
 class BaseModel(Model):
     class Meta:
         database = database
